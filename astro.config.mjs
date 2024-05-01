@@ -10,6 +10,10 @@ export default defineConfig({
 			social: {
 				github: 'https://github.com/zoefapp/awesome-workflow',
 			},
+			customCss: [
+				'./src/styles/tailwind.css',
+				'./src/styles/custom.css',
+			],
 			sidebar: [
 				{
 					label: 'Systems',
@@ -19,17 +23,15 @@ export default defineConfig({
 				},
 				{
 					label: 'Guides',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', link: '/guides/example/' },
-					],
+					autogenerate: {
+						directory: 'guides'
+					}
 				},
 				{
 					label: 'Reference',
 					autogenerate: { directory: 'reference' },
 				},
 			],
-			customCss: ['./src/tailwind.css'],
 		}),
 		tailwind({ applyBaseStyles: false }),
 	],
