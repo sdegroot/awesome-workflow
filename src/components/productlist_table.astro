@@ -1,0 +1,45 @@
+---
+import { type CollectionEntry } from "astro:content";
+
+export type DocsContentEntry = CollectionEntry<"docs">;
+
+interface Props {
+  docs: DocsContentEntry[];
+}
+---
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>GitHub</th>
+      <th>License</th>
+      <th>Hosted Offering</th>
+      <th>BYOC Offering</th>
+    </tr>
+  </thead>
+  <tbody>
+    {
+      Astro.props.docs.map((entry) => {
+        let product = entry.data.system!.product
+        return (
+          <tr>
+            <td>
+              <a href={"/" + entry.slug}>{product.name}</a>
+            </td>
+            <td>
+              <a href={product.github}>
+                {product.github?.substring(
+                  product.github?.lastIndexOf("/") + 1
+                )}
+              </a>
+            </td>
+            <td>{product.license}</td>
+            <td>{product.hosted_offering}</td>
+            <td>{product.byoc_offering}</td>
+          </tr>
+        );
+      })
+    }
+  </tbody>
+</table>

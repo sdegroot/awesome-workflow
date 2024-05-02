@@ -1,0 +1,7 @@
+---
+const {frontmatter} = Astro.props;
+import ProductTable from '../components/product_table.astro';
+---
+<ProductTable system={frontmatter.system} />
+
+<slot />

@@ -1,0 +1,34 @@
+---
+import type { System } from "../content/system";
+
+interface Props {
+  system?: System;
+}
+
+let product = Astro.props.system?.product;
+---
+
+{
+  product && (
+    <table>
+      <tbody>
+        <tr>
+          <th>Github</th>
+          <td>{product.github}</td>
+        </tr>
+        <tr>
+          <th>License</th>
+          <td>{product.license}</td>
+        </tr>
+        <tr>
+          <th>Hosted offering</th>
+          <td>{product.hosted_offering}</td>
+        </tr>
+        <tr>
+          <th>Bring your own cloud</th>
+          <td>{product.byoc_offering}</td>
+        </tr>
+      </tbody>
+    </table>
+  )
+}
