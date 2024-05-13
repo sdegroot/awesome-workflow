@@ -1,7 +1,29 @@
 ---
-const {frontmatter} = Astro.props;
-import ProductTable from '../components/product_table.astro';
+interface Props {
+  frontmatter: {
+    system?: System;
+  };
+}
+const { frontmatter } = Astro.props;
+import ProductTable from "../components/product_table.astro";
+import type { System } from "../content/system";
 ---
+
 <ProductTable system={frontmatter.system} />
 
 <slot />
+
+{
+  frontmatter.system && (
+    <>
+      <h2>Articles</h2>
+      <ol>
+        {frontmatter.system?.articles?.map((article) => (
+          <li>
+            <a href={article}>{article}</a>
+          </li>
+        ))}
+      </ol>
+    </>
+  )
+}

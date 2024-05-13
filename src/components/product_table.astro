@@ -6,28 +6,44 @@ interface Props {
 }
 
 let product = Astro.props.system?.product;
+
+function getDomain(url: string) {
+  return new URL(url).hostname;
+}
 ---
 
 {
   product && (
     <table>
       <tbody>
-        <tr>
+        {product.homepage && <tr>
+          <th>Homepage</th>
+          <td><a href={product.homepage}>Homepage</a></td>
+        </tr>}
+        {product.docs && <tr>
+          <th>Docs</th>
+          <td><a href={product.docs}>{getDomain(product.docs)}</a></td>
+        </tr>}
+        {product.github && <tr>
           <th>Github</th>
-          <td>{product.github}</td>
-        </tr>
-        <tr>
+          <td><a href={product.github}>
+                {product.github?.substring(
+                  product.github?.lastIndexOf("/") + 1
+                )}
+              </a></td>
+        </tr>}
+        {product.license && <tr>
           <th>License</th>
           <td>{product.license}</td>
-        </tr>
-        <tr>
+        </tr>}
+        {product.hosted_offering && <tr>
           <th>Hosted offering</th>
           <td>{product.hosted_offering}</td>
-        </tr>
-        <tr>
+        </tr>}
+        {product.byoc_offering && <tr>
           <th>Bring your own cloud</th>
           <td>{product.byoc_offering}</td>
-        </tr>
+        </tr>}
       </tbody>
     </table>
   )

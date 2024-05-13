@@ -28,6 +28,7 @@ export const FeaturesSchema = z.object({
     "push_activities": z.boolean().optional(),
     "pull_activities": z.boolean().optional(),
     "http_proxy": z.boolean().optional(),
+    "test_without_server": z.boolean().optional(),
 });
 export type Features = z.infer<typeof FeaturesSchema>;
 
@@ -39,7 +40,11 @@ export type Performance = z.infer<typeof PerformanceSchema>;
 
 export const ProductSchema = z.object({
     name: z.string(),
+    authors: z.array(z.string()).optional(),
+    "homepage": z.string().optional(),
+    "docs": z.string().optional(),
     "github": z.string().optional(),
+    "opensource": z.boolean().optional(),
     "license": z.string().optional(),
     "hosted_offering": z.enum(['yes', 'no', 'n/a', 'future']).optional(),
     "byoc_offering": z.enum(['yes', 'no', 'n/a', 'future']).optional(),
@@ -90,6 +95,6 @@ export const SystemSchema = z.object({
     "community": SystemCommunitySchema.optional(),
     "performance": PerformanceSchema.optional(),
     "ratings": RatingsSchema.optional(),
+    "articles": z.array(z.string()).optional(),
 });
 export type System = z.infer<typeof SystemSchema>;
-
