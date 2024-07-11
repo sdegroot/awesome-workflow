@@ -1,9 +1,14 @@
 import colors from 'tailwindcss/colors';
 import starlightPlugin from '@astrojs/starlight-tailwind';
+import node from '@astrojs/node';
 
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+	output: 'server',
+	adapter: node({
+		mode: 'standalone',
+	}),
 	theme: {
 		extend: {
 			colors: {
